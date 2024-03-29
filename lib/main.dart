@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/provider/music_provider.dart';
-import 'package:music_player/screens/songs_screen_list.dart';
-import 'package:music_player/utils/song_list.dart';
+
 
 import 'screens/player_screen.dart';
 

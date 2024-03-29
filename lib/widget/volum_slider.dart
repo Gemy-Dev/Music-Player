@@ -21,6 +21,9 @@ await  MusicProvider.instance.setVolume(value/100);
 ;    _volumeValue = value;
   });
 }
+String timeFormate(int time){
+  return (time/60).toString().padLeft(2,'0');
+}
   @override
   Widget build(BuildContext context) {
     return Transform.flip(flipX: true,
