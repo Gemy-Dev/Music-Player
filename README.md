@@ -4,13 +4,12 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app is playing muiscs and sounds from your phone storage.
+This app is only one screen .
+Have beautiful desing.
+I used Just_Audio lib and OnAudioQuairy lib
+No statemanagement used just Single design pattern
+I will Refactor this code in the future to be more readable .
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![music app](https://github.com/Gemy-Dev/Music-Player/assets/57642488/c586415a-b570-4dda-8cb1-067cb59439ec)
