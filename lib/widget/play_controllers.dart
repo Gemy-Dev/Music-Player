@@ -1,88 +1,84 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_player/provider/music_provider.dart';
-import 'package:music_player/widget/songs_list.dart';
+import 'package:music_player/provider/music_state_manger.dart';
 
 class PlayControllers extends StatelessWidget {
-   PlayControllers({
-    super.key,
+   const PlayControllers({super.key, 
+   
   });
-final music= MusicProvider.instance;
+
   @override
   Widget build(BuildContext context) {
+      final music=MusicStateManager();
     return Column(
       children: [
         SizedBox(
           width: 250,
           height: 70,
           child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            IconButton(
-                onPressed: () async{
-                await  music.previous();
-                },
-                icon: const Icon(
-                  CupertinoIcons.stop_circle,
-                  color: Colors.white,
-                )),
-            IconButton(
-                onPressed: () async{
-                await  music.previous();
-                },
-                icon: const Icon(
-                  CupertinoIcons.backward_end,
-                  color: Colors.white,
-                )),
+              Container(decoration: BoxDecoration(color: Colors.white.withOpacity(.1),
+                borderRadius: BorderRadius.circular(20)),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                          
+                            IconButton(
+                  onPressed: () async{
+                  await  music.seekToPrevious();
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.backward_end,
+                    color: Colors.white,
+                  )),
+                
+                            Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromARGB(255, 248, 83, 135),
+                            Color(0xFF753A88)
+                          ])),
+                  child:  IconButton(
+                          onPressed: ()async {
+                                  
+                            await music.playOrPause();
+                          },
+                          icon: StreamBuilder<PlayerState>(
+                            stream: music.isPlaying(),
+                            builder: (context, snapshot) {
+                              if(snapshot.hasData&&!snapshot.data!.playing ){
 
-            Container(
-                padding: const EdgeInsets.all(5),
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromARGB(255, 248, 83, 135),
-                          Color(0xFF753A88)
-                        ])),
-                child:  IconButton(
-                        onPressed: ()async {
-                                
-                          await music.playOrStop();
-                        },
-                        icon: StreamBuilder<Object>(
-                          stream: music.player.processingStateStream,
-                          builder: (context, snapshot) {
                             
-                            if(!music.player.playing||snapshot.data==ProcessingState.completed) {
-                              return const Icon(
-                              CupertinoIcons.play_fill,
-                              color: Colors.white,
-                              size: 30,
-                            );
-                            
-                            } else {
-                              return const Icon(
-                              CupertinoIcons.pause_fill,
-                              color: Colors.white,
-                              size: 30,
-                            );
+                                return const Icon(
+                                CupertinoIcons.play_fill,
+                                color: Colors.white,
+                                size: 30,
+                              );
+                              
+                        
+                              } else {
+                                return const Icon(
+                                CupertinoIcons.pause_fill,
+                                color: Colors.white,
+                                size: 30,
+                              );
+                              }
                             }
-                          }
-                        ))
-                  
-                ),
-            IconButton(
-                onPressed: ()async {await music.next();},
-                icon: const Icon(
-                  CupertinoIcons.forward_end,
-                  color: Colors.white,
-                )),
-            IconButton(color: Colors.red,
-                onPressed: ()async {await music.next();},
-                icon: const Text('1.0x'))
-          ]),
+                          ))
+                    
+                  ),
+                            IconButton(
+                  onPressed: ()async {await music.seekToNext();},
+                  icon: const Icon(
+                    CupertinoIcons.forward_end,
+                    color: Colors.white,
+                  )),
+            
+                          ]),
+              ),
         ),
         // SizedBox(
         //   width: 250,

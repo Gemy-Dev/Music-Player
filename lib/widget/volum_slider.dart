@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:music_player/provider/music_provider.dart';
+import 'package:music_player/provider/music_state_manger.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class VolumSlider extends StatefulWidget {
-  const VolumSlider({super.key});
+  const VolumSlider({super.key,});
 
   @override
   State<VolumSlider> createState() => _VolumSliderState();
@@ -13,9 +13,9 @@ class VolumSlider extends StatefulWidget {
 
 class _VolumSliderState extends State<VolumSlider> {
   double _volumeValue = 50; 
-
+  final music=MusicStateManager();
 Future<void> onVolumeChanged(double value)async {
-await  MusicProvider.instance.setVolume(value/100);
+music.setVolume(value/100);
   setState(() {
     log(value.toString())
 ;    _volumeValue = value;
@@ -29,7 +29,7 @@ String timeFormate(int time){
     return Transform.flip(flipX: true,
                 child:SfRadialGauge(
        axes: <RadialAxis>[
-                RadialAxis(minimum: 0,
+                RadialAxis(minimum: -1,
                 startAngle: 0,endAngle: -180,
        maximum: 100,
        showLabels: false,

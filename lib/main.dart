@@ -9,7 +9,8 @@ void main()async {
 }
 
 class MusicPlayer extends StatelessWidget {
-  const MusicPlayer({super.key});
+  const MusicPlayer({super.key});                                                                                                                                                                                                                                             
+  
 
   // This widget is the root of your application.
   @override
