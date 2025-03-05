@@ -32,7 +32,7 @@ This app is built with **Flutter** and uses the following packages:
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone https://github.com/Gemy-Dev/Music-Player.git
     ```
 2. Navigate to the project folder:
     ```bash
